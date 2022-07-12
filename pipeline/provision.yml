@@ -7,10 +7,24 @@ pool:
 variables:
   location: 'uksouth'
 
-steps:
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |
-      ls
-
+stages:
+- stage: 'DEV'
+  displayName: 'Provision to DEV'
+  jobs:
+  - deployment: 'Dev'
+    environment: 'dev'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureCLI@2
+            displayName: Deploy Resources
+            inputs:
+              azureSubscription: 'Visual Studio Premium with MSDN (8b113cd9-0ac3-43c9-868a-6d4334e796b7)'
+              scriptType: 'bash'
+              scriptLocation: 'scriptPath'
+              inlineScript: |
+                az deployment sub create 
+                --location $(location) 
+                --template-file @$(Build.SourcesDirectory)/bicep/main.bicep 
+                --parameters resourceGroupLocation=$(location) env=$env
