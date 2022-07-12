@@ -26,5 +26,5 @@ stages:
               inlineScript: |
                 az deployment sub create \
                 --location $(location) \
-                --template-file @$(Build.SourcesDirectory)/bicep/main.bicep \
+                --template-file $(Build.SourcesDirectory)/bicep/main.bicep \
                 --parameters resourceGroupLocation=$(location) env=$env \
