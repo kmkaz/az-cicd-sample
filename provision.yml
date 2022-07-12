@@ -6,7 +6,7 @@ pool:
 
 jobs:
 - job: DevDeploy
-  display: Deploy to DEV
+  displayName: Deploy to DEV
   variables:
     location: 'uksouth'
     env: 'dev'
