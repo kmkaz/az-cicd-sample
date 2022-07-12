@@ -22,11 +22,12 @@ stages:
       runOnce:
         deploy:
           steps:
-          - task: Bash@3
+          - task: AzureCLI@2
             displayName: Deploy Resources
             inputs:
               azureSubscription: 'Visual Studio Premium with MSDN (8b113cd9-0ac3-43c9-868a-6d4334e796b7)'
               scriptType: 'bash'
               scriptLocation: 'scriptPath'
-              scriptPath: './pipeline/provision.sh $(location) dev' 
+              scriptPath: './pipeline/provision.sh'
+              arguments: '$(location) dev'
 
