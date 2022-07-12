@@ -7,9 +7,6 @@ pool:
 variables:
   location: 'uksouth'
 
-steps:
-- checkout: 
-
 stages:
 - stage: 'DEV'
   displayName: 'Provision to DEV'
@@ -29,5 +26,5 @@ stages:
               inlineScript: |
                 az deployment sub create \
                 --location $(location) \
-                --template-file main.bicep \
+                --template-file ./main.bicep \
                 --parameters resourceGroupLocation=$(location) env=$env \
