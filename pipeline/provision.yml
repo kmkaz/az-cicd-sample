@@ -1,0 +1,21 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: 'Dev'
+  steps:
+  - task: AzureCLI@2
+    displayName: Deploy Resources
+    inputs:
+      azureSubscription: 'Visual Studio Premium with MSDN (8b113cd9-0ac3-43c9-868a-6d4334e796b7)'
+      scriptType: 'bash'
+      scriptLocation: 'scriptPath'
+      scriptPath: './IoC/pipeline/provision.sh'
