@@ -24,7 +24,7 @@ stages:
               scriptType: 'bash'
               scriptLocation: 'inlineScript'
               inlineScript: |
-                az deployment sub create 
-                --location $(location) 
-                --template-file @$(Build.SourcesDirectory)/bicep/main.bicep 
-                --parameters resourceGroupLocation=$(location) env=$env
+                az deployment sub create \
+                --location $(location) \
+                --template-file @$(Build.SourcesDirectory)/bicep/main.bicep \
+                --parameters resourceGroupLocation=$(location) env=$env \
