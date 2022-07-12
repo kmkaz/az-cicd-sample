@@ -6,6 +6,7 @@ pool:
 
 variables:
   location: 'uksouth'
+  env: 'dev'
 
 - task: AzureCLI@2
   displayName: Deploy to DEV
@@ -17,7 +18,7 @@ variables:
       az deployment sub create \
       --location $(location) \
       --template-file ./main.bicep \
-      --parameters resourceGroupLocation=$(location) env=dev \
+      --parameters resourceGroupLocation=$(location) env=$(env) \
 
 
 # stages:
