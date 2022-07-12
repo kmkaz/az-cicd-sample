@@ -9,8 +9,7 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-stages:
-- stage: 'Dev'
+- stage: 'DEV'
   steps:
   - task: AzureCLI@2
     displayName: Deploy Resources
@@ -18,4 +17,4 @@ stages:
       azureSubscription: 'Visual Studio Premium with MSDN (8b113cd9-0ac3-43c9-868a-6d4334e796b7)'
       scriptType: 'bash'
       scriptLocation: 'scriptPath'
-      scriptPath: './IoC/pipeline/provision.sh'
+      scriptPath: './IoC/pipeline/provision.sh uksouth dev' 
