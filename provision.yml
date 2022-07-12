@@ -31,7 +31,7 @@ stages:
     displayName: Deploy to UAT
     variables:
       location: 'uksouth'
-      env: 'UAT'
+      env: 'uat'
     steps:
     - task: AzureCLI@2
       displayName: Deploy to DEV
