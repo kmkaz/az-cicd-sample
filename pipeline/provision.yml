@@ -17,7 +17,6 @@ stages:
   displayName: 'Provision to DEV'
   jobs:
   - deployment: 'Dev'
-    environment: 'dev'
     strategy:
       runOnce:
         deploy:
