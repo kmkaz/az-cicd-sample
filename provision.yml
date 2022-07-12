@@ -5,13 +5,33 @@ pool:
   vmImage: ubuntu-latest
 
 stages:
-- stage: 'Dev'
+- stage: 'DEV'
   jobs:
   - job: DevDeploy
     displayName: Deploy to DEV
     variables:
       location: 'uksouth'
       env: 'dev'
+    steps:
+    - task: AzureCLI@2
+      displayName: Deploy to DEV
+      inputs:
+        azureSubscription: 'Visual Studio Premium with MSDN (8b113cd9-0ac3-43c9-868a-6d4334e796b7)'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az deployment sub create \
+          --location $(location) \
+          --template-file ./main.bicep \
+          --parameters resourceGroupLocation=$(location) env=$(env) \
+
+- stage: 'UAT'
+  jobs:
+  - job: UatDeploy
+    displayName: Deploy to UAT
+    variables:
+      location: 'uksouth'
+      env: 'UAT'
     steps:
     - task: AzureCLI@2
       displayName: Deploy to DEV
