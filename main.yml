@@ -1,5 +1,5 @@
 trigger:
-- test-pipeline
+- align
 
 pool:
   vmImage: ubuntu-latest
