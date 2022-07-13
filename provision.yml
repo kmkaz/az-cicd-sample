@@ -6,16 +6,6 @@ parameters:
 - name: stage
   type: string
  
-variables:
-  resourceGroupName: 'AsSct-Int-RG-SKUAcquireService-${{ parameters.stage }}-Init'
-  tagPlatform: 'SCT Integration'
-  tagSubPlatform: 'Integration'
-  tagDataClassification: 'asos-confidential'
-  tagBusinessCriticality: 'business-supporting'
-  tagPcode: 'P_000404'
-  team: 'Nexus'
-  tagStage: '{{ parameters.stage }}'
- 
 steps:
 - task: AzureCLI@2
   displayName: Set subscription
@@ -26,6 +16,15 @@ steps:
       az account set --subscription ${{ parameters.subscriptionName }}
  
 - task: AzureCLI@2
+  variables:
+    resourceGroupName: 'AsSct-Int-RG-SKUAcquireService-${{ parameters.stage }}-Init'
+    tagPlatform: 'SCT Integration'
+    tagSubPlatform: 'Integration'
+    tagDataClassification: 'asos-confidential'
+    tagBusinessCriticality: 'business-supporting'
+    tagPcode: 'P_000404'
+    team: 'Nexus'
+    tagStage: '{{ parameters.stage }}'
   displayName: Create resource group
   inputs:
     scriptType: 'bash'
