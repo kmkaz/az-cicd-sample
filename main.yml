@@ -1,5 +1,21 @@
+trigger:
+- test-pipeline
+
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
+stages:
+- stage: 'DEV'
+  jobs:
+  - job: DevDeploy
+    displayName: Deploy to DEV
+    variables:
+      location: 'uksouth'
+      env: 'dev'
+    steps:
+    - template: provision.yml
+      parameters: {
+        location: uksouth
+        env: dev
+      }
+
