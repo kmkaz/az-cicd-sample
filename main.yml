@@ -1,5 +1,5 @@
 trigger:
-- align
+- main
 
 pool:
   vmImage: ubuntu-latest
@@ -14,3 +14,13 @@ stages:
       parameters: 
         location: uksouth
         env: dev
+
+- stage: 'UAT'
+  jobs:
+  - job: DevDeploy
+    displayName: Deploy to UAT
+    steps:
+    - template: provision.yml
+      parameters: 
+        location: uksouth
+        env: uat        
