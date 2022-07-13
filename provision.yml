@@ -17,10 +17,10 @@ steps:
  
 - task: AzureCLI@2
   variables:
-    resourceGroupName: 'AsSct-Int-RG-SKUAcquireService-${{ parameters.stage }}-Init'
-    tagPlatform: 'SCT Integration'
+    resourceGroupName: 'Moo-RG-${{ parameters.stage }}'
+    tagPlatform: 'Moo Integration'
     tagSubPlatform: 'Integration'
-    tagDataClassification: 'asos-confidential'
+    tagDataClassification: 'moo-confidential'
     tagBusinessCriticality: 'business-supporting'
     tagPcode: 'P_000404'
     team: 'Nexus'

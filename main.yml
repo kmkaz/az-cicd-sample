@@ -5,8 +5,8 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  sctNonProdSubName: SCTIntegrationNonProd
-  sctProdSubName: SCTIntegrationProd
+  sctNonProdSubName: 'Visual Studio Premium with MSDN'
+  sctProdSubName: 'Visual Studio Premium with MSDN'
 
 stages:
 - stage: 'DEV_EUN'
