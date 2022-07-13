@@ -5,10 +5,10 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  tagPlatform: 'Moo Integration'
-  tagSubPlatform: 'Integration'
-  tagDataClassification: 'moo-confidential'
-  tagBusinessCriticality: 'business-supporting'
+  tagPlatform: 'Integration'
+  tagSubPlatform: 'Moo'
+  tagDataClassification: 'moofidential'
+  tagBusinessCriticality: 'yes'
   tagPcode: 'P_000404'
   tagTeam: 'Gang of Moos'
 
