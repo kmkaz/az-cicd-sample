@@ -10,7 +10,7 @@ variables:
   tagDataClassification: 'moo-confidential'
   tagBusinessCriticality: 'business-supporting'
   tagPcode: 'P_000404'
-  team: 'Nexus'
+  tagTeam: 'Nexus'
 
 stages:
 - stage: 'DEV_EUN'
@@ -37,5 +37,5 @@ stages:
             stage=$(tagStage) \
             data-classification=$(tagDataClassification) \
             business-criticality=$(tagBusinessCriticality) \
-            pcode=$(pcode) \
-            team=$(team)
+            pcode=$(tagPcode) \
+            team=$(tagTeam)
