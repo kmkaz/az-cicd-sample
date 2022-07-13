@@ -14,8 +14,6 @@ stages:
       env: 'dev'
     steps:
     - template: provision.yml
-      parameters: {
+      parameters: 
         location: uksouth
         env: dev
-      }
-
