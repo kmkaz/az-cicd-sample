@@ -9,9 +9,6 @@ stages:
   jobs:
   - job: DevDeploy
     displayName: Deploy to DEV
-    variables:
-      location: 'uksouth'
-      env: 'dev'
     steps:
     - template: provision.yml
       parameters: 
