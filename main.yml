@@ -17,7 +17,7 @@ stages:
 
 - stage: 'UAT'
   jobs:
-  - job: DevDeploy
+  - job: UatDeploy
     displayName: Deploy to UAT
     steps:
     - template: provision.yml
