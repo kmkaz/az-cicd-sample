@@ -10,7 +10,7 @@ variables:
   tagDataClassification: 'moo-confidential'
   tagBusinessCriticality: 'business-supporting'
   tagPcode: 'P_000404'
-  tagTeam: 'Nexus'
+  tagTeam: 'Gang of Moos'
 
 stages:
 - stage: 'DEV_EUN'
