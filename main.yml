@@ -25,18 +25,12 @@ stages:
       resourceGroupName: 'Moo-RG-$(tagStage)'
     steps:
     - task: AzureCLI@2
-      displayName: Set subscription
+      displayName: Provision resources
       inputs:
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
-          az account set --subscription ${{ parameters.subscriptionName }}
-    - task: AzureCLI@2
-      displayName: Create resource group
-      inputs:
-        scriptType: 'bash'
-        scriptLocation: 'inlineScript'
-        inlineScript: |
+          az account set --subscription $(nonProdSubName)
           az group create \
           --name $(resourceGroupName) \
           --location $(location) \
