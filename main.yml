@@ -1,26 +1,24 @@
 trigger:
-- main
+  - ci-cd/initial-pipeline
 
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  sctNonProdSubName: SCTIntegrationNonProd
+  sctProdSubName: SCTIntegrationProd
+
 stages:
-- stage: 'DEV'
+- stage: 'DEV_EUN'
   jobs:
   - job: DevDeploy
     displayName: Deploy to DEV
+    variables:
+      tagStage: 'Dev'
+      location: 'northeurope'
     steps:
     - template: provision.yml
-      parameters: 
-        location: uksouth
-        env: dev
-
-- stage: 'UAT'
-  jobs:
-  - job: UatDeploy
-    displayName: Deploy to UAT
-    steps:
-    - template: provision.yml
-      parameters: 
-        location: uksouth
-        env: uat        
+      parameters:
+        subscriptionName: $(sctNonProdSubName)
+        location: $(location)
+        stage: $(tagStage)

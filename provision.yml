@@ -1,17 +1,43 @@
 parameters:
+- name: subscriptionName
+  type: string
 - name: location
   type: string
-- name: env
+- name: stage
   type: string
+ 
+variables:
+  resourceGroupName: 'AsSct-Int-RG-SKUAcquireService-${{ parameters.stage }}-Init'
+  tagPlatform: 'SCT Integration'
+  tagSubPlatform: 'Integration'
+  tagDataClassification: 'asos-confidential'
+  tagBusinessCriticality: 'business-supporting'
+  tagPcode: 'P_000404'
+  team: 'Nexus'
+  tagStage: '{{ parameters.stage }}'
+ 
 steps:
 - task: AzureCLI@2
-  displayName: Provision resources
+  displayName: Set subscription
   inputs:
-    azureSubscription: 'Visual Studio Premium with MSDN (8b113cd9-0ac3-43c9-868a-6d4334e796b7)'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
-      az deployment sub create \
-      --location ${{ parameters.location }} \
-      --template-file ./main.bicep \
-      --parameters resourceGroupLocation=${{ parameters.location }} env=${{ parameters.env }}
+      az account set --subscription ${{ parameters.subscriptionName }}
+ 
+- task: AzureCLI@2
+  displayName: Create resource group
+  inputs:
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az group create \
+      --name $(resourceGroupName) \
+      --location $(location) \
+      --tags platform='$(tagPlatform)' \
+        sub-platform='$(tagSubPlatform)' \
+        stage=$(tagStage) \
+        data-classification=$(tagDataClassification) \
+        business-criticality=$(tagBusinessCriticality) \
+        pcode=$(pcode) \
+        team=$(team)
