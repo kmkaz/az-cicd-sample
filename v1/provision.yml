@@ -1,0 +1,45 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  location: 'uksouth'
+  env: 'dev'
+
+steps:
+- task: AzureCLI@2
+  displayName: Deploy to DEV
+  inputs:
+    azureSubscription: 'Visual Studio Premium with MSDN (8b113cd9-0ac3-43c9-868a-6d4334e796b7)'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az deployment sub create \
+      --location $(location) \
+      --template-file ./main.bicep \
+      --parameters resourceGroupLocation=$(location) env=$(env) \
+
+
+# stages:
+# - stage: 'DEV'
+#   displayName: 'Provision to DEV'
+#   jobs:
+#   - deployment: 'Dev'
+#     environment: 'dev'
+#     strategy:
+#       runOnce:
+#         deploy:
+#           steps:
+#           - task: AzureCLI@2
+#             displayName: Deploy Resources
+#             inputs:
+#               azureSubscription: 'Visual Studio Premium with MSDN (8b113cd9-0ac3-43c9-868a-6d4334e796b7)'
+#               scriptType: 'bash'
+#               scriptLocation: 'inlineScript'
+#               inlineScript: |
+#                 az deployment sub create \
+#                 --location $(location) \
+#                 --template-file ./main.bicep \
+#                 --parameters resourceGroupLocation=$(location) env=$env \
