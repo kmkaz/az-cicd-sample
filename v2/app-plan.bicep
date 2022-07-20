@@ -11,7 +11,7 @@ resource appPlan 'Microsoft.Web/serverfarms@2020-12-01' = {
     name: sku
   }
   properties: {
-    reserved: true
+    reserved: kind == 'linux'
   }
 }
 

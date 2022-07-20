@@ -1,6 +1,7 @@
 param name string
 param appSvcPlanId string
 param storageConnectionString string
+param serviceBusConnection string
 param instrumentationKey string
 param location string = resourceGroup().location
 
@@ -15,6 +16,10 @@ resource site 'Microsoft.Web/sites@2021-02-01' = {
     httpsOnly: true
     siteConfig: {
       appSettings: [
+        {
+          name: 'ServiceBusConnection'
+          value: serviceBusConnection
+        }
         {
           name: 'FUNCTIONS_EXTENSION_VERSION'
           value: '~3'

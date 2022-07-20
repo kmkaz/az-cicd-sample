@@ -1,13 +1,13 @@
 param location string = resourceGroup().location
 var prefix = 'mkbicep'
 
-// module sb 'sb.bicep' = {
-//   name: 'sb'
-//   params: {
-//     name: '${prefix}sb'
-//     location: location
-//   }
-// }
+module sb 'sb.bicep' = {
+  name: 'sb'
+  params: {
+    name: '${prefix}sb'
+    location: location
+  }
+}
 
 module storage 'storage.bicep' = {
   name: 'storage'
@@ -64,5 +64,6 @@ module logicApp 'logic-app.bicep' = {
     appSvcPlanId: logicAppPlan.outputs.id
     instrumentationKey: appInsights.outputs.instrumentationKey
     storageConnectionString: storage.outputs.connectionString
+    serviceBusConnection: sb.outputs.endpoint
   }
 }

@@ -31,3 +31,5 @@ module topic 'sb-topic.bicep' = [for topicName in topics: {
   }
 }]
 
+var sbPath = '${sb.id}/AuthorizationRules/RootManageSharedAccessKey'
+output endpoint string = 'Endpoint=sb://${sb.name}.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=${listKeys(sbPath, sb.apiVersion).primaryKey}'
